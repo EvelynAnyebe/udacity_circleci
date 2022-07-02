@@ -1,25 +1,28 @@
 # CircleCI configuration file
 version: 2.1
-
+orbs:
+  # Declare a dependency on the welcome-orb
+  welcome: circleci/welcome-orb@0.4.1
 jobs:
   # Job one with a unique name
   print_hello:
     docker:
-      - image: cimg/base:2022.05
+      - image: circleci/node:13.8.0
     steps:
       - run: echo "Say hello to YAML!"
   # Job two with a unique name
   print_world:
     docker:
-      - image: cimg/base:2022.05
+      - image: circleci/node:13.8.0
     steps:
       - run: echo "Say Worls to YAML!"
 
 workflows:
   # Name of workflow
-  hello_and_goodbye:
+  welcome:
     # List of jobs that will run
     jobs:
+      - welcome/run
       - print_hello
       - print_world
           requires:
