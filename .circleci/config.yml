@@ -16,6 +16,14 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - run: echo "Say Worls to YAML!"
+  print_env_var:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - run:
+          name: "echo EVELYN env var value that is part of our project"
+          command: |
+            echo $EVELYN_VAR
 
 workflows:
   # Name of workflow
@@ -25,3 +33,4 @@ workflows:
       - welcome/run
       - print_hello
       - print_world
+      - print_env_var
