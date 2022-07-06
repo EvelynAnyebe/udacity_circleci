@@ -24,6 +24,22 @@ jobs:
           name: "echo EVELYN env var value that is part of our project"
           command: |
             echo $EVELYN_VAR
+  save_hello_world_output:
+    docker:
+      - image: cimg/base:2020.01
+    steps:
+      - run: echo "Hello World" > output.txt
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - output.txt
+  print_output_file:
+    docker:
+      - image: cimg/base:2020.01
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: cat output.txt
 
 workflows:
   # Name of workflow
@@ -34,3 +50,5 @@ workflows:
       - print_hello
       - print_world
       - print_env_var
+      - save_hello_world_output
+      - print_output_file
