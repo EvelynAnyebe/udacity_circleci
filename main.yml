@@ -1,0 +1,5 @@
+- name: Remote Control Using Ansible
+  hosts: all
+  user: ubuntu
+  roles:
+   - setup

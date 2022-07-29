@@ -40,9 +40,25 @@ jobs:
       # Uncomment the line below if you want to fail the current step
       # - run: return 1
       - destroy_environment
+  configure_infrastructure: 
+    docker:
+      - image: python:3.7-alpine3.11
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints: ["1e:74:bd:bb:ed:27:79:f0:c8:40:72:c2:ab:6d:c6:a2"]
+      - run:
+          name: Install dependencies
+          command: |
+            # install the dependencies needed for your playbook
+            apk add --update ansible 
+      - run:
+          name: Configure server
+          command: |
+            ansible-playbook -i inventory.txt main4.yml    
 workflows:
   # Name of workflow
   my_workflow:
     # List of jobs that will run
     jobs:
-      - create_infrastructure
+      - configure_infrastructure
