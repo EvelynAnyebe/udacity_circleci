@@ -1,2 +1,2 @@
 [all]
-34-238-241-244
+ec2-34-238-241-244.compute-1.amazonaws.com
