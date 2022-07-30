@@ -49,7 +49,7 @@ jobs:
           name: Install dependencies
           command: |
             # install the dependencies needed for your playbook
-            apk add --update ansible 
+            apk add openssh && apk add --update ansible 
       - run:
           name: Configure server
           command: |
