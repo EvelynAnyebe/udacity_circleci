@@ -26,7 +26,7 @@ jobs:
   # Job one with a unique name
   create_infrastructure:
     environment:
-      ANSIBLE_HOST_KEY_CHECKING: False 
+      - ANSIBLE_HOST_KEY_CHECKING: False 
     docker:
       - image: amazon/aws-cli
     steps:
